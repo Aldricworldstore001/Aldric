@@ -1,1 +1,20 @@
-import express from "express"; import cors from "cors"; const app = express(); app.use(cors()); app.use(express.json()); app.get("/", (req, res) => { res.send("API is running"); }); app.get("/products", (req, res) => { res.json([ { name: "Wireless Earbuds", link: "https://amazon.com" }, { name: "Smart Watch", link: "https://amazon.com" } ]); }); app.listen(3000, () => console.log("Server running on port 3000"));
+import express from "express";
+import cors from "cors";
+
+const app = express();
+app.use(cors());
+
+// Route
+app.get("/", (req, res) => {
+  res.json([
+    { name: "Wireless Earbuds", link: "https://amazon.com" },
+    { name: "Smart Watch", link: "https://amazon.com" }
+  ]);
+});
+
+// ✅ IMPORTANT PART (for Render)
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(Server running on port ${PORT});
+});
